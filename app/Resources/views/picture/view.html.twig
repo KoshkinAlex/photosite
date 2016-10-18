@@ -7,19 +7,31 @@
     <script src="{{ asset('js/onepicpage.js') }}"></script>
 {% endblock %}
 
+{% block css %}
+    {{ parent() }}
+    <link href="{{ asset('css/photoslider.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
 <div id="picTitle">
 <h1>{{ picture.title }}</h1>
 {{ include('picture/_title.html.twig', { 'genre':genre, 'tag':tag, 'album':album  }) }}
 </div>
 
-<img src="/{{ picture.path }}/thumb/900/{{ picture.filename }}" >
+<img src="/{{ picture.path }}/thumb/900/{{ picture.filename }}" class="js-main-photo" data-picture-id="{{ picture.id }}">
+
+
+<div id="thumbBarContainer"></div>
 
 {% if pictureList %}
-
-    <div class="js-scroll-list">
+    <div class="js-scroll-list" style="display: none">
     {% for picture in pictureList %}
-        {{ include('picture/scroll_list.html.twig', { 'picture':picture, 'genre':genre, 'tag':tag, 'album':album  }) }}
+        <a
+            href="{{ include('picture/_link.html.twig', { 'picture': picture , 'album': album , 'genre': genre , 'tag': tag }) }}#{{ picture.id }}"
+            data-picture-id="{{ picture.id }}"
+            data-picture-filename="{{ picture.filename }}"
+            data-picture-path="{{ picture.path }}"
+        ><img src="/{{ picture.path }}/thumb/3/{{ picture.filename }}" ></a>
     {% endfor %}
     </div>
 {% endif %}

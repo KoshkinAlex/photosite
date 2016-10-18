@@ -149,7 +149,8 @@ FOTO.Slider = {
 
 	},
 	
-	showImg: function(id) {	
+	showImg: function(id) {
+        console.log('showImg',id)
 		var firstThumb = $('#thumbBarContainer .photoslider_thumb[slot='+ id +']');
 		firstThumb.click();
 	},
