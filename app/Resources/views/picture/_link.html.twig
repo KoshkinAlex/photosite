@@ -1,0 +1,11 @@
+{% if album %}
+    {{ path('picture_view_album', {'id': picture.id, 'album_id': album.id}) }}
+{% endif %}
+
+{% if genre %}
+    {{ path('picture_view_genre', {'id': picture.id, 'genre_alias': genre.alias}) }}
+{% endif %}
+
+{% if tag %}
+    {{ path('picture_view_tag', {'id': picture.id, 'tag_alias': tag.alias}) }}
+{% endif %}

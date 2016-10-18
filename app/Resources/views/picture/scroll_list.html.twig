@@ -1,0 +1,8 @@
+<a href="{{
+include('picture/_link.html.twig', {
+    'picture': picture ,
+    'album': album ,
+    'genre': genre ,
+    'tag': tag
+})
+}}"><img src="/{{ picture.path }}/thumb/3/{{ picture.filename }}" ></a>

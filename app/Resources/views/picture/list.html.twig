@@ -1,0 +1,16 @@
+{% extends '/layout/page.html.twig' %}
+
+{% block body %}
+<h1>{{ include('picture/_title.html.twig', { 'genre':genre, 'tag':tag, 'album':album  }) }}</h1>
+
+<div class="clear"></div>
+<div class="picContainer">
+
+{% for picture in pictures %}
+    {{ include('picture/thumb.html.twig', { 'picture': picture }) }}
+{% else %}
+    <div>No pictures found</div>
+{% endfor %}
+    </div>
+    <div class="clear"></div><br/>
+{% endblock %}

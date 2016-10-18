@@ -1,0 +1,26 @@
+{% extends '/layout/page.html.twig' %}
+
+{% block javascript %}
+{{ parent() }}
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/photoslider.js') }}"></script>
+    <script src="{{ asset('js/onepicpage.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div id="picTitle">
+<h1>{{ picture.title }}</h1>
+{{ include('picture/_title.html.twig', { 'genre':genre, 'tag':tag, 'album':album  }) }}
+</div>
+
+<img src="/{{ picture.path }}/thumb/900/{{ picture.filename }}" >
+
+{% if pictureList %}
+
+    <div class="js-scroll-list">
+    {% for picture in pictureList %}
+        {{ include('picture/scroll_list.html.twig', { 'picture':picture, 'genre':genre, 'tag':tag, 'album':album  }) }}
+    {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

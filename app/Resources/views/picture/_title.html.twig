@@ -1,0 +1,11 @@
+{% if album %}
+    <a href="{{ path('album_view', {'id': album.id}) }}">Альбом &laquo;{{ album.title }}&raquo;</a>
+{% endif %}
+
+{% if genre %}
+    <a href="{{ path('genre_view', {'alias': genre.alias}) }}">Жанр &laquo;{{ genre.title }}&raquo;</a>
+{% endif %}
+
+{% if tag %}
+    <a href="{{ path('tag_view', {'alias': tag.alias}) }}">{{ tag.title }}</a>
+{% endif %}
