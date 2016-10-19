@@ -2,13 +2,12 @@
 
 {% block javascript %}
 {{ parent() }}
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/photoslider.js') }}"></script>
-    <script src="{{ asset('js/onepicpage.js') }}"></script>
+    <script src="{{ asset('js/photo-view.js') }}"></script>
 {% endblock %}
 
 {% block css %}
     {{ parent() }}
+    <link href="{{ asset('css/photo-view.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/photoslider.css') }}" rel="stylesheet" />
 {% endblock %}
 
@@ -18,21 +17,24 @@
 {{ include('picture/_title.html.twig', { 'genre':genre, 'tag':tag, 'album':album  }) }}
 </div>
 
-<img src="/{{ picture.path }}/thumb/900/{{ picture.filename }}" class="js-main-photo" data-picture-id="{{ picture.id }}">
+<div class="js-big-photo-container">
+    <img src="/{{ picture.path }}/thumb/900/{{ picture.filename }}" data-picture-id="{{ picture.id }}">
+</div>
 
-
-<div id="thumbBarContainer"></div>
 
 {% if pictureList %}
-    <div class="js-scroll-list" style="display: none">
-    {% for picture in pictureList %}
+    <div class="photo-slider-container js-photo-slider">
+        <div class="photo-slider-content">
+    {% for thumb in pictureList %}
         <a
-            href="{{ include('picture/_link.html.twig', { 'picture': picture , 'album': album , 'genre': genre , 'tag': tag }) }}#{{ picture.id }}"
-            data-picture-id="{{ picture.id }}"
-            data-picture-filename="{{ picture.filename }}"
-            data-picture-path="{{ picture.path }}"
-        ><img src="/{{ picture.path }}/thumb/3/{{ picture.filename }}" ></a>
+            href="{{ include('picture/_link.html.twig', { 'picture': thumb , 'album': album , 'genre': genre , 'tag': tag }) }}#{{ thumb.id }}"
+            data-picture-id="{{ thumb.id }}"
+            data-picture-filename="{{ thumb.filename }}"
+            data-picture-path="{{ thumb.path }}"
+            {% if  thumb.id ==  picture.id%} class="selected" {% endif %}
+        ><img src="/{{ thumb.path }}/thumb/3/{{ thumb.filename }}" ></a>
     {% endfor %}
+        </div>
     </div>
 {% endif %}
 {% endblock %}

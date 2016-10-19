@@ -6,14 +6,28 @@
     <meta name="keywords" content="{# page_tag_keywords #}" />
     <meta name="language" content="ru" />
     {% block css %}
+
+        {% stylesheets '../vendor/twbs/bootstrap/dist/css/bootstrap.min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
     {% endblock %}
+
+
 
     <title>{# page_title #}</title>
 </head>
 <body>
 
 {% block javascript %}
+
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+
+    {% javascripts '../vendor/twbs/bootstrap/dist/js/bootstrap.min.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+
     <script src="{{ asset('js/resize.js') }}"></script>
 {% endblock %}
 
@@ -21,8 +35,8 @@
 main menu
 {% endblock %}
 
-<div id="contentContainer">
-    <div id="content">
+<div>
+    <div >
 {% block body %}{% endblock %}
     </div>
 </div>
